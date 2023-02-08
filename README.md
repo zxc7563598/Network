@@ -9,3 +9,44 @@
 索性直接封装到 composer 中
 
 目前姑且仅进行了 Curl 请求的封装，后续有时间会考虑继续进行扩展
+
+## 安装方法
+
+` composer require suqingan/network `
+
+## 使用方式
+
+```
+<?php
+
+use Suqingan\Network;
+···
+···
+
+class xxx
+{
+    public function xxxx()
+    {
+        Network\请求方式::请求方法
+    }
+}
+```
+
+## 当前支持的请求方式
+
+| 方式 | 说明               |
+| :--- | :----------------- |
+| Curl | 通过 cURL 进行请求 |
+
+## 当前支持的请求方法
+
+| 方法 | 说明        |
+| :--- | :---------- |
+| Get  | get 请求    |
+| Post | post 请求   |
+| Del  | delete 请求 |
+| Put  | put 请求    |
+
+> 通过 curl 进行 post 请求即为：Network\Curl::Post();
+
+---
