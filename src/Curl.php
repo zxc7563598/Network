@@ -16,7 +16,7 @@ class Curl
      * @param integer $timeout 超时时间「毫秒」
      * @return string|array|null
      */
-    function GetUrl($url, $type = null, $header = [], $timeout = 0)
+    public static function Get($url, $type = null, $header = [], $timeout = 0)
     {
         $headerArray = [];
         switch ($type) {
@@ -62,7 +62,7 @@ class Curl
      * @param integer $timeout 超时时间「毫秒」
      * @return string|array|null
      */
-    function posturl($url, $data, $type = null, $header = [], $timeout = 0)
+    public static function Post($url, $data, $type = null, $header = [], $timeout = 0)
     {
         $headerArray = [];
         switch ($type) {
