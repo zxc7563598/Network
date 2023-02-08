@@ -13,7 +13,6 @@
         }
     ],
     "require": {
-        "php": ">=7.0.0",
-        "suqingan/network": "dev-main"
+        "php": ">=7.0.0"
     }
 }
