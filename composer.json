@@ -1,0 +1,15 @@
+{
+    "name": "suqingan/network",
+    "autoload": {
+        "psr-4": {
+            "Suqingan\\Network\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Junjie He",
+            "email": "junjie.he.925@gmail.com"
+        }
+    ],
+    "require": {}
+}
