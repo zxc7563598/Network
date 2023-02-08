@@ -12,9 +12,8 @@
             "email": "junjie.he.925@gmail.com"
         }
     ],
-    "minimum-stability": "dev",
     "require": {
         "php": ">=7.0.0",
-        "suqingan/network": "main"
+        "suqingan/network": "dev-main"
     }
 }
