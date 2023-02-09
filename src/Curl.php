@@ -229,8 +229,8 @@ class Curl
      * 如果不指定 fileName 则随机为文件生成名字
      *
      * @param string $url 下载文件地址（资源类型的链接）
-     * @param string $filePath 下载路径
-     * @param string $fileName 文件名称
+     * @param string $filePath 保存文件路径
+     * @param string $fileName 保存文件名
      * @return void
      */
     public static function DowFile($url, $filePath = './', $fileName = null)
