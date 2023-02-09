@@ -1,17 +1,14 @@
 {
     "name": "suqingan/network",
     "description": "这是一个所有框架通用的PHP网络请求扩展",
+    "type":"library",
     "keywords": [
         "php",
         "network",
         "curl"
     ],
+    "homepage":"https://github.com/zxc7563598/Network",
     "license": "MIT",
-    "autoload": {
-        "psr-4": {
-            "Suqingan\\Network\\": "src/"
-        }
-    },
     "authors": [
         {
             "name": "Junjie He",
@@ -20,6 +17,11 @@
     ],
     "support": {
         "email": "junjie.he.925@gmail.com"
+    },
+    "autoload": {
+        "psr-4": {
+            "Suqingan\\Network\\": "src/"
+        }
     },
     "require": {}
 }
