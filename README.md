@@ -50,3 +50,11 @@ class xxx
 > 通过 curl 进行 post 请求即为：Network\Curl::Post();
 
 ---
+
+## 返回内容
+
+| 参数    | 说明             |
+| :------ | :--------------- |
+| code    | Http Status Code |
+| data    | 数据             |
+| message | 异常说明         |
