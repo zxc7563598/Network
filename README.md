@@ -40,12 +40,13 @@ class xxx
 
 ## 当前支持的请求方法
 
-| 方法 | 说明        |
-| :--- | :---------- |
-| Get  | get 请求    |
-| Post | post 请求   |
-| Del  | delete 请求 |
-| Put  | put 请求    |
+| 方法    | 说明        |
+| :------ | :---------- |
+| Get     | get 请求    |
+| Post    | post 请求   |
+| Del     | delete 请求 |
+| Put     | put 请求    |
+| DowFile | 资源下载    |
 
 > 通过 curl 进行 post 请求即为：Network\Curl::Post();
 
