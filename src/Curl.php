@@ -43,10 +43,15 @@ class Curl
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         $output = curl_exec($ch);
         $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $message = 'Curl success';
+        if (curl_exec($ch) === false) {
+            $message = 'Curl error: ' . curl_error($ch);
+        }
         curl_close($ch);
         return [
             'code' => $code,
-            'data' => $output
+            'data' => $output,
+            'message' => $message
         ];
     }
 
@@ -94,10 +99,15 @@ class Curl
         curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
         $output = curl_exec($ch);
         $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $message = 'Curl success';
+        if (curl_exec($ch) === false) {
+            $message = 'Curl error: ' . curl_error($ch);
+        }
         curl_close($ch);
         return [
             'code' => $code,
-            'data' => $output
+            'data' => $output,
+            'message' => $message
         ];
     }
 
@@ -145,10 +155,15 @@ class Curl
         curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
         $output = curl_exec($ch);
         $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $message = 'Curl success';
+        if (curl_exec($ch) === false) {
+            $message = 'Curl error: ' . curl_error($ch);
+        }
         curl_close($ch);
         return [
             'code' => $code,
-            'data' => $output
+            'data' => $output,
+            'message' => $message
         ];
     }
     /**
@@ -195,10 +210,68 @@ class Curl
         curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
         $output = curl_exec($ch);
         $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $message = 'Curl success';
+        if (curl_exec($ch) === false) {
+            $message = 'Curl error: ' . curl_error($ch);
+        }
         curl_close($ch);
         return [
             'code' => $code,
-            'data' => $output
+            'data' => $output,
+            'message' => $message
+        ];
+    }
+
+    /**
+     * Curl 下载文件到本地
+     * 
+     * 如果不指定 filePath 则默认为当前目录
+     * 如果不指定 fileName 则随机为文件生成名字
+     *
+     * @param string $url 下载文件地址（资源类型的链接）
+     * @param string $filePath 下载路径
+     * @param string $fileName 文件名称
+     * @return void
+     */
+    public static function DowFile($url, $filePath = './', $fileName = null)
+    {
+        $code = 999;
+        $data = '';
+        if (empty($url)) {
+            $message = 'Empty Url';
+        }
+        $path_parts = pathinfo($url);
+        if (empty($path_parts['extension'])) {
+            $message = 'Empty File';
+        }
+        if (!file_exists($filePath) && !mkdir($filePath, 0777, true)) {
+            $message = 'Path File';
+        }
+        if (empty($fileName)) {
+            $fileName = (microtime(true) * 10000);
+        }
+        if (empty($message)) {
+            $fp = @fopen($filePath . $fileName . '.' . $path_parts['extension'], 'w');
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_FILE, $fp);
+            curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+            curl_setopt($ch, CURLOPT_TIMEOUT, 0);
+            curl_exec($ch);
+            $message = 'Curl success';
+            $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+            if (curl_exec($ch) === false) {
+                $message = 'Curl error: ' . curl_error($ch);
+            }
+            curl_close($ch);
+            curl_close($ch);
+            fclose($fp);
+            $data = $filePath . $fileName . '.' . $path_parts['extension'];
+        }
+        return [
+            'code' => $code,
+            'data' => $data,
+            'message' => $message
         ];
     }
 }
