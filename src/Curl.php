@@ -269,10 +269,10 @@ class Curl
             curl_setopt($ch, CURLOPT_FILE, $fp);
             curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
             curl_setopt($ch, CURLOPT_TIMEOUT, 0);
-            curl_exec($ch);
+            $output = curl_exec($ch);
             $message = 'Curl success';
             $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-            if (curl_exec($ch) === false) {
+            if ($output === false) {
                 $message = 'Curl error: ' . curl_error($ch);
             }
             curl_close($ch);
