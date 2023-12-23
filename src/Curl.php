@@ -47,9 +47,6 @@ class Curl
         $output = curl_exec($ch);
         $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         $message = 'Curl success';
-        if ($output === false) {
-            $message = 'Curl error: ' . curl_error($ch);
-        }
         curl_close($ch);
         return [
             'code' => $code,
@@ -106,9 +103,6 @@ class Curl
         $output = curl_exec($ch);
         $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         $message = 'Curl success';
-        if ($output === false) {
-            $message = 'Curl error: ' . curl_error($ch);
-        }
         curl_close($ch);
         return [
             'code' => $code,
@@ -165,9 +159,6 @@ class Curl
         $output = curl_exec($ch);
         $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         $message = 'Curl success';
-        if ($output === false) {
-            $message = 'Curl error: ' . curl_error($ch);
-        }
         curl_close($ch);
         return [
             'code' => $code,
@@ -223,9 +214,6 @@ class Curl
         $output = curl_exec($ch);
         $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         $message = 'Curl success';
-        if ($output === false) {
-            $message = 'Curl error: ' . curl_error($ch);
-        }
         curl_close($ch);
         return [
             'code' => $code,
@@ -269,12 +257,9 @@ class Curl
             curl_setopt($ch, CURLOPT_FILE, $fp);
             curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
             curl_setopt($ch, CURLOPT_TIMEOUT, 0);
-            $output = curl_exec($ch);
+            curl_exec($ch);
             $message = 'Curl success';
             $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-            if ($output === false) {
-                $message = 'Curl error: ' . curl_error($ch);
-            }
             curl_close($ch);
             curl_close($ch);
             fclose($fp);
