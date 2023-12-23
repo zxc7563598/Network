@@ -13,11 +13,10 @@ class Curl
      * @param string $url 请求地址
      * @param string $type 请求类型「from, form-data, json, xml」
      * @param array $header 额外的 header
-     * @param integer $cookies cookie
      * @param integer $timeout 超时时间「毫秒」
      * @return string|array|null
      */
-    public static function Get($url, $type = null, $header = [], $cookies = [], $timeout = 0)
+    public static function Get($url, $type = null, $header = [], $timeout = 0)
     {
         $headerArray = [];
         switch ($type) {
@@ -35,21 +34,16 @@ class Curl
                 break;
         }
         $headerArray = array_merge($headerArray, $header);
-        $cookie = http_build_query($cookies, '', '; ');
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_TIMEOUT_MS, $timeout);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headerArray);
-        curl_setopt($ch, CURLOPT_COOKIE, $cookie);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         $output = curl_exec($ch);
         $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         $message = 'Curl success';
-        if ($output === false) {
-            $message = 'Curl error: ' . curl_error($ch);
-        }
         curl_close($ch);
         return [
             'code' => $code,
@@ -67,11 +61,10 @@ class Curl
      * @param array|string $data 请求数据
      * @param string $type 请求类型「from, form-data, json, xml」
      * @param array $header 额外的 header
-     * @param integer $cookies cookie
      * @param integer $timeout 超时时间「毫秒」
      * @return array
      */
-    public static function Post($url, $data, $type = null, $header = [], $cookies = [], $timeout = 0)
+    public static function Post($url, $data, $type = null, $header = [], $timeout = 0)
     {
         $headerArray = [];
         switch ($type) {
@@ -92,23 +85,18 @@ class Curl
                 break;
         }
         $headerArray = array_merge($headerArray, $header);
-        $cookie = http_build_query($cookies, '', '; ');
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_TIMEOUT_MS, $timeout);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headerArray);
-        curl_setopt($ch, CURLOPT_COOKIE, $cookie);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
         $output = curl_exec($ch);
         $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         $message = 'Curl success';
-        if ($output === false) {
-            $message = 'Curl error: ' . curl_error($ch);
-        }
         curl_close($ch);
         return [
             'code' => $code,
@@ -126,11 +114,10 @@ class Curl
      * @param array|string $data 请求数据
      * @param string $type 请求类型「from, form-data, json, xml」
      * @param array $header 额外的 header
-     * @param integer $cookies cookie
      * @param integer $timeout 超时时间「毫秒」
      * @return array
      */
-    public static function Del($url, $data, $type = null, $header = [], $cookies = [], $timeout = 0)
+    public static function Del($url, $data, $type = null, $header = [], $timeout = 0)
     {
         $headerArray = [];
         switch ($type) {
@@ -151,23 +138,18 @@ class Curl
                 break;
         }
         $headerArray = array_merge($headerArray, $header);
-        $cookie = http_build_query($cookies, '', '; ');
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_TIMEOUT_MS, $timeout);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headerArray);
-        curl_setopt($ch, CURLOPT_COOKIE, $cookie);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
         curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
         $output = curl_exec($ch);
         $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         $message = 'Curl success';
-        if ($output === false) {
-            $message = 'Curl error: ' . curl_error($ch);
-        }
         curl_close($ch);
         return [
             'code' => $code,
@@ -184,11 +166,10 @@ class Curl
      * @param array|string $data 请求数据
      * @param string $type 请求类型「from, form-data, json, xml」
      * @param array $header 额外的 header
-     * @param integer $cookies cookie
      * @param integer $timeout 超时时间「毫秒」
      * @return array
      */
-    public static function Put($url, $data, $type = null, $header = [], $cookies = [], $timeout = 0)
+    public static function Put($url, $data, $type = null, $header = [], $timeout = 0)
     {
         $headerArray = [];
         switch ($type) {
@@ -209,23 +190,18 @@ class Curl
                 break;
         }
         $headerArray = array_merge($headerArray, $header);
-        $cookie = http_build_query($cookies, '', '; ');
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_TIMEOUT_MS, $timeout);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headerArray);
-        curl_setopt($ch, CURLOPT_COOKIE, $cookie);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
         curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
         $output = curl_exec($ch);
         $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         $message = 'Curl success';
-        if ($output === false) {
-            $message = 'Curl error: ' . curl_error($ch);
-        }
         curl_close($ch);
         return [
             'code' => $code,
@@ -269,12 +245,9 @@ class Curl
             curl_setopt($ch, CURLOPT_FILE, $fp);
             curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
             curl_setopt($ch, CURLOPT_TIMEOUT, 0);
-            $output = curl_exec($ch);
+            curl_exec($ch);
             $message = 'Curl success';
             $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-            if ($output === false) {
-                $message = 'Curl error: ' . curl_error($ch);
-            }
             curl_close($ch);
             curl_close($ch);
             fclose($fp);
